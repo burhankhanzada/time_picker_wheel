@@ -1,15 +1,21 @@
 name: time_picker_wheel
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/burhankhanzada/time_picker_wheel
+
+topics:
+  - time
+  - picker
+  - wheek
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  intl: ^0.18.1
+  spaces2: ^1.0.1
 
 dev_dependencies:
   flutter_test:
