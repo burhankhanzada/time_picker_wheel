@@ -1,39 +1,60 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Time Picker
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Time Picker inspired by Oppo Clock app set alram time screen with full customization
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* Easy to use
+* Fully customizable
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```yaml
+dependencies:
+  ...
+
+  time_picker_wheel: <version>
+
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+import 'package:time_picker_wheel/time_picker_wheel.dart';
 ```
 
-## Additional information
+Defualt style
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+TimePicker()
+```
+
+Customize style
+
+```dart
+TimePicker(
+    options: TimePickerOptions.byDefault(
+    height: 200,
+    itemExtent: 30,
+    diameterRatio: 1,
+    selectedRowHeight: 70,
+    fontOpacity: 1,
+    fontColor: Colors.purple,
+    labelSize: 25,
+    numberSize: 25,
+    amPmSize: 15,
+    amPmWidth: 25,
+    wheelWidth: 50,
+    selectedRowHorizontalPadding: double.maxFinite,
+    selectedRowHorizontalBorderRadius: 0,
+    selectedRowForegroundColor: Colors.black,
+    selectedRowBackgroundColor: Colors.amber,
+    ),
+)
+```
+
+## Screenshot
+
+Example                             |  Inspired from Oppo clock app set salram screen
+:----------------------------------:|:------------------------------------------------------------:
+![example](screenshots/example.png) | ![oppo_clock_set_alarm](screenshots/oppo_clock_set_alarm.jpg)
