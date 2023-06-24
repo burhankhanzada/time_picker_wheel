@@ -57,11 +57,11 @@ class TimePickerOptions {
         diameterRatio = diameterRatio ?? 2,
         numberSize = numberSize ?? 25,
         labelSize = labelSize ?? 15,
-        wheelWidth = wheelWidth ?? 15,
+        wheelWidth = wheelWidth ?? 30,
         amPmSize = amPmSize ?? 20,
         amPmWidth = amPmWidth ?? 35,
         selectedRowHeight = selectedRowHeight ?? 30,
-        selectedRowHorizontalPadding = selectedRowHorizontalPadding ?? 16,
+        selectedRowHorizontalPadding = selectedRowHorizontalPadding ?? 30,
         selectedRowHorizontalBorderRadius =
             selectedRowHorizontalBorderRadius ?? 15;
 }
