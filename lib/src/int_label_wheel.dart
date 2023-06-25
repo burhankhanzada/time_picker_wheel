@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:spaces2/spaces2.dart';
 
 import 'export.dart';
@@ -6,17 +7,16 @@ import 'export.dart';
 class IntLabelWheel extends StatefulWidget {
   const IntLabelWheel({
     super.key,
-    required this.items,
     required this.label,
+    required this.items,
+    required this.onChange,
     required this.controller,
-    required this.options,
   });
 
-  final List<int> items;
   final String label;
+  final List<int> items;
+  final Function(int value) onChange;
   final FixedExtentScrollController controller;
-
-  final TimePickerOptions options;
 
   @override
   State<IntLabelWheel> createState() => _IntLabelWheelState();
@@ -25,69 +25,73 @@ class IntLabelWheel extends StatefulWidget {
 class _IntLabelWheelState extends State<IntLabelWheel> {
   late int _selectedIndex = widget.controller.initialItem;
 
+  late TimePickerOptions options = context.read<TimePickerOptions>();
+
+  late final colorUtil = ColorUtil(context);
+
   @override
   Widget build(BuildContext context) {
-    Color seletectColor = Theme.of(context).colorScheme.onPrimary;
-
-    if (widget.options.selectedRowForegroundColor != null) {
-      seletectColor = widget.options.selectedRowForegroundColor!;
-    }
-
-    Color nonSeletectColor = Theme.of(context).colorScheme.onSurface;
-
-    if (widget.options.fontColor != null) {
-      nonSeletectColor = widget.options.fontColor!;
-    }
-
     return SpacedRow.small(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          width: widget.options.wheelWidth,
-          child: ListWheelScrollView.useDelegate(
-            controller: widget.controller,
-            itemExtent: widget.options.itemExtent,
-            physics: const FixedExtentScrollPhysics(),
-            diameterRatio: widget.options.diameterRatio,
-            overAndUnderCenterOpacity: widget.options.fontOpacity,
-            onSelectedItemChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            childDelegate: ListWheelChildLoopingListDelegate(
-              children: widget.items.map(
-                (e) {
-                  final index = widget.items.indexOf(e);
-
-                  final text = e.toString();
-
-                  final color = index == _selectedIndex
-                      ? seletectColor
-                      : nonSeletectColor;
-
-                  return Center(
-                    child: Text(
-                      text,
-                      style: TextStyle(
-                        fontSize: widget.options.numberSize,
-                        color: color,
-                      ),
-                    ),
-                  );
-                },
-              ).toList(),
-            ),
-          ),
-        ),
-        Text(
-          widget.label,
-          style: TextStyle(
-            fontSize: widget.options.labelSize,
-            color: seletectColor,
-          ),
-        )
+        wheel(),
+        label(),
       ],
+    );
+  }
+
+  Widget wheel() {
+    return SizedBox(
+      width: options.wheelWidth,
+      child: ListWheelScrollView.useDelegate(
+        controller: widget.controller,
+        itemExtent: options.itemExtent,
+        physics: const FixedExtentScrollPhysics(),
+        diameterRatio: options.diameterRatio,
+        overAndUnderCenterOpacity: options.fontOpacity,
+        onSelectedItemChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+
+            final value = widget.items[index];
+
+            widget.onChange(value);
+          });
+        },
+        childDelegate: ListWheelChildLoopingListDelegate(
+          children: widget.items.map(
+            (e) {
+              final index = widget.items.indexOf(e);
+
+              final text = e.toString().padLeft(2, '0');
+
+              final color = index == _selectedIndex
+                  ? colorUtil.selectedColor
+                  : colorUtil.nonSelectedColor;
+
+              return Center(
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: color,
+                    fontSize: options.numberSize,
+                  ),
+                ),
+              );
+            },
+          ).toList(),
+        ),
+      ),
+    );
+  }
+
+  Widget label() {
+    return Text(
+      widget.label,
+      style: TextStyle(
+        fontSize: options.labelSize,
+        color: colorUtil.selectedColor,
+      ),
     );
   }
 }

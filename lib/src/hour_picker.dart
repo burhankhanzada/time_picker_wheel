@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import 'export.dart';
 
 class HourPicker extends StatelessWidget {
-  const HourPicker(this.options, {super.key});
-
-  final TimePickerOptions options;
+  const HourPicker({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final now = DateTime.now();
-
-    var formatter = DateFormat('h');
-
-    late final hour = int.parse(formatter.format(now));
-
     final items = List.generate(12, (index) => index + 1);
+
+    final timeChangeNotifier = context.watch<TimeChangeNotifier>();
+
+    final hour = timeChangeNotifier.hour;
+
+    // log('Hour: $hour');
 
     final indexOfHour = items.indexOf(hour);
 
     return IntLabelWheel(
       items: items,
       label: 'Hour',
-      options: options,
+      onChange: (value) {
+        timeChangeNotifier.hour = value;
+        context.read<OnChange>().call(timeChangeNotifier.timeOfDay());
+      },
       controller: FixedExtentScrollController(initialItem: indexOfHour),
     );
   }

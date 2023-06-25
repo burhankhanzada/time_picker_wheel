@@ -26,35 +26,40 @@ import 'package:time_picker_wheel/time_picker_wheel.dart';
 Defualt style
 
 ```dart
-TimePicker()
+TimePicker(
+    onChange: (timeOfDay) {
+    },
+),
 ```
 
 Customize style
 
 ```dart
 TimePicker(
+    onChange: (timeOfDay) {
+    },
     options: TimePickerOptions.byDefault(
-    height: 200,
-    itemExtent: 30,
-    diameterRatio: 1,
-    selectedRowHeight: 70,
-    fontOpacity: 1,
-    fontColor: Colors.purple,
-    labelSize: 25,
-    numberSize: 25,
-    amPmSize: 15,
-    amPmWidth: 25,
-    wheelWidth: 50,
-    selectedRowHorizontalPadding: double.maxFinite,
-    selectedRowHorizontalBorderRadius: 0,
-    selectedRowForegroundColor: Colors.black,
-    selectedRowBackgroundColor: Colors.amber,
+        height: 200,
+        itemExtent: 30,
+        diameterRatio: 1,
+        selectedRowHeight: 70,
+        fontOpacity: 1,
+        fontColor: Colors.purple,
+        labelSize: 25,
+        numberSize: 25,
+        amPmSize: 15,
+        amPmWidth: 25,
+        wheelWidth: 50,
+        selectedRowHorizontalPadding: double.maxFinite,
+        selectedRowHorizontalBorderRadius: 0,
+        selectedRowForegroundColor: Colors.black,
+        selectedRowBackgroundColor: Colors.amber,
     ),
-)
+),
 ```
 
-## Screenshot
+## Example
 
-Example                             |  Inspired from Oppo clock app set salram screen
-:----------------------------------:|:------------------------------------------------------------:
-![example](screenshots/example.png) | ![oppo_clock_set_alarm](screenshots/oppo_clock_set_alarm.jpg)
+| Screenshot | Gif |
+|------------|-----|
+| <img src="https://github.com/burhankhanzada/time_picker_wheel/blob/main/screenshots/example.png" width="200"/> | <img src="https://github.com/burhankhanzada/time_picker_wheel/blob/main/screenshots/example.gif" width="200"/>
