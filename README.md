@@ -62,4 +62,4 @@ TimePicker(
 
 | Screenshot | Gif |
 |------------|-----|
-| <img src="https://github.com/burhankhanzada/time_picker_wheel/blob/main/screenshots/example.png" width="200"/> | <img src="https://github.com/burhankhanzada/time_picker_wheel/blob/main/screenshots/example.gif" width="200"/>
+| <img src="https://i.imgur.com/CmuGuM9.png" width="200"/> | <img src="https://i.imgur.com/KqUxDUG.gif" width="200"/>
