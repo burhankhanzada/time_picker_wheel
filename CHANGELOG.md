@@ -1,3 +1,6 @@
+## 0.1.1
+
+* Updated screenhsots links
 ## 0.1.0
 
 * Implemented onChnageCallback and improve overall code
