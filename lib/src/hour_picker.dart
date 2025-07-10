@@ -8,7 +8,7 @@ class HourPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final items = List.generate(12, (index) => index + 1);
+    final items = List.generate(13, (index) => index);
 
     final timeChangeNotifier = context.watch<TimeChangeNotifier>();
 
